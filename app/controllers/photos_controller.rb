@@ -12,6 +12,11 @@ class PhotosController < ApplicationController
     render("photos/favorite.html.erb")
   end
 
+  def wall
+    @photos = current_user.photos
+    render("photos/wall.html.erb")
+  end
+
   def show
     @photo = Photo.find(params[:id])
 

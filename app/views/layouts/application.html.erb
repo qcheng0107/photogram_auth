@@ -43,7 +43,7 @@
           <li><a href="/users">All Users</a></li>
           <li><a href="/photos">All posts</a></li>
           <li><a href="/my_likes">My Likes</a></li>
-          <li><a href="/users/<%= current_user.id %>">My Wall</a></li>
+          <li><a href="/my_wall">My Wall</a></li>
           <li><a href="/rails/git">Git</a></li>
           <!--<li><a href="/rails/info">Sitemap</a></li>-->
         </ul>
@@ -53,8 +53,12 @@
             <li><a href="/users/sign_in"> Log In </a></li>
             <li><a href="/users/sign_up"> Sign Up </a></li>
           <% else %>
-            <li><a href="/users/edit"> Edit Profile </a></li>
-            <li><a href="/users/sign_out" data-method="delete" rel="nofollow"> Sign Out </a></li>
+            <li><a href="/users/edit"> <%= current_user.username %>
+            <i class="fa fa-fw fa-edit"></i>
+            </a></li>
+            <li><a href="/users/sign_out" data-method="delete" rel="nofollow"> Sign Out 
+            <i class="fa fa-fw fa-sign-out"></i>
+            </a></li>
           <% end %>
         </ul>
       </div><!-- /.navbar-collapse -->
