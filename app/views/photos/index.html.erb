@@ -15,7 +15,7 @@
           <div class="panel-heading">
             <h3 class="panel-title">
             <a href="/users/<%= photo.user.id %>"><%= photo.user.username %>
-            </a><small><%= time_ago_in_words(Time.now) %> ago</small></h3>
+            </a><small><%= time_ago_in_words(photo.created_at) %> ago</small></h3>
           </div>
           <div class="panel-body">
             <a href="/photos/<%= photo.id %>"><image src="<%= photo.image %>" class="img-responsive"</a>
