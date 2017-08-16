@@ -1,31 +1,32 @@
-<div class="page-header">
-  <h1>
-    Photos
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
     <a href="/photos/new" class="btn btn-lg btn-success">
       <i class="fa fa-plus"></i>
     </a>
-  </h1>
+    <hr>
+</div>
 </div>
 
-<div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-      <div class="panel-heading">
-        
-      <% @photos.each do |photo| %>
-      <h3 <a href="/users/<%= photo.user.id %>"<%= photo.user.username %> class="panel-title">
-      </a>
-        <div class="panel-body">
-          <a href="/photos/<%= photo.id %>" class="img-responsive"><image src="<%= photo.image %>"</a>
-          <p>
-            <% if current_user && Like.find_by(user_id: current_user.id, photo_id: photo.id) %>
+         <% @photos.each do |photo| %>
+          <div class="panel-heading">
+            <h3 class="panel-title">
+            <a href="/users/<%= photo.user.id %>"<%= photo.user.username %>
+            </a><small><%= time_ago_in_words(Time.now) %> ago</small></h3>
+          </div>
+          <div class="panel-body">
+            <a href="/photos/<%= photo.id %>" class="img-responsive"><image src="<%= photo.image %>"</a>
+            <p>
+              <% if current_user && Like.find_by(user_id: current_user.id, photo_id: photo.id) %>
                 <form action="/delete_like/<%= photo.id %>" method="post" class="btn btn-link">
                    <button>
                      <i class="fa fa-heart"></i>
                    </button>
-                  </form>
-                <% else %>
+                </form>
+              <% else %>
                 <form action="/create_like" method="post" class="btn btn-link">
                    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
                    <input type="hidden" name="photo_id" value="<%= photo.id %>">
@@ -33,13 +34,14 @@
                     <button>
                      <i class="fa fa-heart"></i>
                    </button>
-                  </form>
+                </form>
               <% end %>
-            <% photo.likes.each do |like| %>
+              <% photo.likes.each do |like| %>
               <%= like.user.username %>
-            <% end %>
-          </p>
-          <% photo.comments.each do |comment| %>
+              <% end %>
+            </p>
+          
+            <% photo.comments.each do |comment| %>
             <ul class="media-list">
               <li class="media">
                 <div class="media-body">
@@ -49,8 +51,8 @@
                 </div>
               </li>
             </ul>
-          <% end %>
-          <input name="authenticity_token" type="hidden" value="+MiPGwlAgKSc+gPz+bFyaJo8IrHdTIo6Hpf8nJOEPwnviJXstY774j/A+qRia9Q7MFvJunm8nXmtdpjDkXyo+Q==">
+            <% end %>
+            <input name="authenticity_token" type="hidden" value="+MiPGwlAgKSc+gPz+bFyaJo8IrHdTIo6Hpf8nJOEPwnviJXstY774j/A+qRia9Q7MFvJunm8nXmtdpjDkXyo+Q==">
           
           <div class="input-group">
             <% if current_user == nil %>
@@ -59,7 +61,6 @@
               <form form action="/create_comment" method="post">
                 <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
                 <input type="hidden" name="photo_id" value="<%= photo.id %>">
-                <input type="hidden" name="user_id" value="<%= current_user.id %>">
                 <input type="hidden" name="user_id" value="<%= current_user.id %>">
                 <input type="text" id="body" name="body" class="form-control" placeholder="Add a comment..." required value="<%= @comment.body %>">
                   <span class="input-group-btn">
@@ -89,4 +90,3 @@
       </div>
     </div>
   </div>
-</div>
