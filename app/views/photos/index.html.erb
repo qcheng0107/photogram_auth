@@ -19,7 +19,7 @@
           </h3>
         </div>
         <div class="panel-body">
-          <a href="/photos/<%= photo.id %>"><image src="<%= photo.image %>" class="img-responsive"</a>
+          <a href="/photos/<%= photo.id %>"><image src="<%= photo.image %>" class="img-responsive"></a>
             <p>
               <% if current_user && Like.find_by(user_id: current_user.id, photo_id: photo.id) %>
                 <form action="/delete_like/<%= photo.id %>" method="post" class="btn btn-link">
