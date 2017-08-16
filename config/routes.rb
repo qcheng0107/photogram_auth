@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # CREATE
   get "/comments/new", :controller => "comments", :action => "new"
   post "/create_comment", :controller => "comments", :action => "create"
+  post "/quick_comment", :controller => "comments", :action => "quickadd"
 
   # READ
   get "/comments", :controller => "comments", :action => "index"
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   # CREATE
   get "/likes/new", :controller => "likes", :action => "new"
   post "/create_like", :controller => "likes", :action => "create"
+  post "/quick_like", :controller => "comments", :action => "quickadd"
 
   # READ
   get "/likes", :controller => "likes", :action => "index"

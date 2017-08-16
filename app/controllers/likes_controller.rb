@@ -31,6 +31,21 @@ class LikesController < ApplicationController
       render("likes/new.html.erb")
     end
   end
+  
+  def quickadd
+    @like = Like.new
+
+    @like.user_id = params[:user_id]
+    @like.photo_id = params[:photo_id]
+
+    save_status = @like.save
+
+    if save_status == true
+      redirect_to("/photos}", :notice => "Like created successfully.")
+    else
+      render("likes/new.html.erb")
+    end
+  end
 
   def edit
     @like = Like.find(params[:id])
